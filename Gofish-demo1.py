@@ -37,6 +37,11 @@ if code == "gofish":
 
         # Player's turn
         ask = input("\nAsk the bot for a card: ").strip().lower()
+        
+        if ask not in cardtypes:
+            print("Invalid card type. Please ask for a valid card.")
+            continue
+            
         if ask in bot2:
             print(f"Yes, I have a {symbols[ask]}🤖")
             bot2.remove(ask)
@@ -61,6 +66,7 @@ if code == "gofish":
 
             if available_cards:
                 bot_ask = random.choice(available_cards)
+                
                 print(f"\nBot asks: Do you have any {bot_ask}?")
 
                 if bot_ask in p1:
@@ -82,7 +88,7 @@ if code == "gofish":
                 print("\nBot has no more cards to ask for!")
 
         # game end conditions
-        if not p1 or not bot2:
+        if not deck and not p1 and not bot2:
             print("\nGame Over!")
             if not p1:
                 print("You lost! Better luck next time.")
